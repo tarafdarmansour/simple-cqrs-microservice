@@ -1,0 +1,32 @@
+﻿@model CreateProductCommand
+
+@using (Html.BeginForm("Add", "Product", FormMethod.Post))
+{
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th colspan="2" align="center">Person Details</th>
+        </tr>
+        <tr>
+            <td>Name: </td>
+            <td>
+                @Html.TextBoxFor(m => m.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>CategoryName: </td>
+            <td>
+                @Html.TextBoxFor(m => m.CategoryName)
+            </td>
+        </tr>
+        <tr>
+            <td>Manufacturer: </td>
+            <td>
+                @Html.TextBoxFor(m => m.Manufacturer)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+}
