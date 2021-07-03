@@ -36,7 +36,10 @@ namespace ProductService
                        .AllowAnyHeader();
             }));
 
-            services.AddControllersWithViews();
+            services
+                .AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
+
             services.AddRabbit(_env);
             services.AddMediatR(typeof(Startup));
 

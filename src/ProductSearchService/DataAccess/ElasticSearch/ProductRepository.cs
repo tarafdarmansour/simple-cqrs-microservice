@@ -32,26 +32,31 @@ namespace ProductSearchService.DataAccess.ElasticSearch
 
         public async Task<List<SearchProduct>> Find(string queryText)
         {
-            var result = await elasticClient
-                .SearchAsync<SearchProduct>(
-                    s =>
-                        s.From(0)
-                        //.Size(10)
-                        .Query(q =>
-                            q.MultiMatch(mm =>
-                                mm.Query(queryText)
-                                .Fields(f => f.Fields(p => p.Name, p => p.CategoryName, p => p.Manufacturer))
-                                .Type(TextQueryType.BestFields)
-                                .Fuzziness(Fuzziness.Auto)
-                            )
-                    ));
-
-
             //var result = await elasticClient
             //    .SearchAsync<SearchProduct>(
             //        s =>
             //            s.From(0)
-            //            .Size(10));
+            //            .Size(10)
+            //            .Query(q =>
+            //                q.MultiMatch(mm =>
+            //                    mm.Query(queryText)
+            //                    .Fields(f => f.Fields(p => p.Name, p => p.CategoryName, p => p.Manufacturer))
+            //                    .Type(TextQueryType.BestFields)
+            //                    .Fuzziness(Fuzziness.Auto)
+            //                )
+            //        ));
+
+            var result = await elasticClient
+                .SearchAsync<SearchProduct>(
+                    s =>
+                        s.From(0)
+                        .Size(100)
+                        .Query(q =>
+                            q.MultiMatch(mm => mm
+                                .Fields(f => f.Fields(p => p.Name, p => p.CategoryName))
+                                .Query(queryText)
+                            )
+                    ));
 
             return result.Documents.ToList();
         }

@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProductService\ProductService.csproj" />
+    <Watch Include="**\*.cshtml" />
   </ItemGroup>
 
 </Project>

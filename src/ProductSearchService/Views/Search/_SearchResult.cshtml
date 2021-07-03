@@ -1,21 +1,25 @@
 ﻿@model GetSearchProductListResult
+<div id="mytable" class="table-responsive">
+    <h4>Result Count: @Model.SearchProductListResultItems.Count</h4>
+    <table id="mytable" class="table table-bordred table-striped">
 
-<table id="mytable" class="table table-bordred table-striped">
-
-    <thead>
-    <th>Name</th>
-    <th>CategoryName</th>
-    <th>Manufacturer</th>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.SearchProductListResultItems)
-        {
+        <thead>
             <tr>
-                <td>@item.Name</td>
-                <td>@item.CategoryName</td>
-                <td>@item.Manufacturer</td>
+                <th>Name</th>
+                <th>CategoryName</th>
+                <th>Manufacturer</th>
             </tr>
-        }
-    </tbody>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SearchProductListResultItems)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.Manufacturer</td>
+                </tr>
+            }
+        </tbody>
 
-</table>
+    </table>
+</div>
