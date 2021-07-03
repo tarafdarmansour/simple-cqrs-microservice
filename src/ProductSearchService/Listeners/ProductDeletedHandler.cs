@@ -22,7 +22,6 @@ namespace DashboardService.Listeners
 
             var entity = await _repository.GetById(notification.Id);
 
-
             await _repository.Delete(entity);
 
 

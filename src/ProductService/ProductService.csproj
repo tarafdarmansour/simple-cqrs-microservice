@@ -20,5 +20,6 @@
   <ItemGroup>
     <Folder Include="Messaging\RabbitMQ\Outbox\" />
     <Folder Include="Migrations\" />
+    <Watch Include="**\*.cshtml" />
   </ItemGroup>
 </Project>

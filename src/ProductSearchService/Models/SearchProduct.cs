@@ -29,12 +29,12 @@ namespace ProductSearchService.Models
             UpdateDateTime = DateTime.Now;
         }
 
-        public Guid Id { get; protected set; }
+        public Guid Id { get; set; }
         public string Name { get;  set; }
         public string CategoryName { get;  set; }
         public string Manufacturer { get;  set; }
-        public DateTime CreateDateTime { get; protected set; }
-        public DateTime? UpdateDateTime { get; protected set; }
+        public DateTime CreateDateTime { get; set; }
+        public DateTime? UpdateDateTime { get; set; }
     }
 
 }

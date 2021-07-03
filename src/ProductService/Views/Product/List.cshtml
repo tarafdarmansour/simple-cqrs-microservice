@@ -8,16 +8,20 @@
 
         <a style="margin:10px;" class="btn btn-success" href="/Product/Add">Add Product</a>
         <a style="margin:10px;" class="btn btn-success" id="addrandomProduct" onclick="addrandomcutomer()" href="#">Add a random Product</a>
+        <h4>Total Product Count: @Model.ProductListResultItems.Count</h4>
         <div class="col-md-12">
             <div class="table-responsive">
                 <table id="mytable" class="table table-bordred table-striped">
 
                     <thead>
-                    <th>Name</th>
-                    <th>CategoryName</th>
-                    <th>Manufacturer</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                        <tr>
+                            <th>Name</th>
+                            <th>CategoryName</th>
+                            <th>Manufacturer</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    
                     </thead>
                     <tbody>
                         @foreach (var item in Model.ProductListResultItems)
@@ -173,7 +177,7 @@
         var productId = $(".modal-body #edit_productId").val();
         var firstname = $(".modal-body #edit_firstname").val();
         var categoryname = $(".modal-body #edit_categoryname").val();
-        var manufacturer = new Date( $(".modal-body #edit_manufacturer").val());
+        var manufacturer = $(".modal-body #edit_manufacturer").val();
 
         $.ajax({
             type: "POST",

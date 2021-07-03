@@ -47,15 +47,14 @@ namespace ProductSearchService.DataAccess.ElasticSearch
                 .SearchAsync<SearchProduct>(
                     s =>
                         s.From(0)
-                        //.Size(10)
+                        .Size(100)
                         .Query(q =>
-                            q.MultiMatch(mm =>
-                                mm.Query(queryText)
-                                .Fields(f => f.Fields(p => p.Name, p => p.CategoryName, p => p.Manufacturer))
-                                .Type(TextQueryType.BestFields)
-                                .Fuzziness(Fuzziness.Auto)
+                            q.MultiMatch(mm => mm
+                                .Fields(f => f.Fields(p => p.Name, p => p.CategoryName))
+                                .Query(queryText)
                             )
                     ));
+
 
 
             return result.Documents.ToList();
@@ -63,24 +62,18 @@ namespace ProductSearchService.DataAccess.ElasticSearch
 
         public async Task<SearchProduct> GetById(Guid Id)
         {
-            var result = await elasticClient
-                .GetAsync<SearchProduct>(Id);
-
-
-            return result.Source;
+            var res = await elasticClient.GetAsync<SearchProduct>(Id);
+            return res.Source;
         }
-
 
         public async Task Update(SearchProduct searchProduct)
         {
             try
             {
-                var res = await elasticClient
-                        .UpdateAsync<SearchProduct>(searchProduct.Id, u => u.Doc(searchProduct));
+                var res = await elasticClient.UpdateAsync<SearchProduct>(searchProduct.Id, u => u.Doc(searchProduct));
             }
             catch (Exception exp)
             {
-
             }
         }
     }
