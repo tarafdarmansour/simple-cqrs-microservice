@@ -9,6 +9,9 @@ namespace ProductSearchService.Domain
     public interface IProductSearchRepository
     {
         Task Add(SearchProduct searchProduct);
+        Task Update(SearchProduct searchProduct);
+        Task Delete(SearchProduct searchProduct);
         Task<List<SearchProduct>> Find(string queryText);
+        Task<SearchProduct> GetById(Guid Id);
     }
 }

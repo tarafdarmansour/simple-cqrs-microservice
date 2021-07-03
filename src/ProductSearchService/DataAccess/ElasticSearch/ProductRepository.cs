@@ -25,10 +25,21 @@ namespace ProductSearchService.DataAccess.ElasticSearch
             }
             catch (Exception exp)
             {
-
             }
         }
 
+        public async Task Delete(SearchProduct searchProduct)
+        {
+            try
+            {
+                var res = await elasticClient
+                        .DeleteAsync<SearchProduct>(searchProduct);
+            }
+            catch (Exception exp)
+            {
+
+            }
+        }
 
         public async Task<List<SearchProduct>> Find(string queryText)
         {
@@ -47,13 +58,30 @@ namespace ProductSearchService.DataAccess.ElasticSearch
                     ));
 
 
-            //var result = await elasticClient
-            //    .SearchAsync<SearchProduct>(
-            //        s =>
-            //            s.From(0)
-            //            .Size(10));
-
             return result.Documents.ToList();
+        }
+
+        public async Task<SearchProduct> GetById(Guid Id)
+        {
+            var result = await elasticClient
+                .GetAsync<SearchProduct>(Id);
+
+
+            return result.Source;
+        }
+
+
+        public async Task Update(SearchProduct searchProduct)
+        {
+            try
+            {
+                var res = await elasticClient
+                        .UpdateAsync<SearchProduct>(searchProduct.Id, u => u.Doc(searchProduct));
+            }
+            catch (Exception exp)
+            {
+
+            }
         }
     }
 }

@@ -14,7 +14,6 @@ namespace ProductSearchService.Models
         }
         public SearchProduct(ProductCreated Product)
         {
-            var r = new Random();
             Id = Product.Id;
             Name = Product.Name;
             CategoryName = Product.CategoryName;
